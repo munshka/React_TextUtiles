@@ -25,18 +25,28 @@ function App() {
       setAlert(null);
     }, 3000);
   }
+  const showBlink = () => {
+    setTimeout(() => {
+      document.title = 'Get Utiles Now!';
+    }, 3000);
+    setTimeout(() => {
+      document.title = 'Amazing Tools';
+    }, 1500);
+  }
 
   const toggleMode = () => {
     if (mode === 'light') {
       setMode("dark");
       document.body.style.backgroundColor = '#1c1c29';
       showAlert("Dark Mode enabled", "success");
+      showBlink();
       document.title = 'TextUtiles - Dark';
     }
     else {
       setMode("light");
       document.body.style.backgroundColor = 'white';
       showAlert("Light Mode enabled", "success");
+      showBlink();
       document.title = 'TextUtiles - Light';
     }
   }
@@ -50,7 +60,7 @@ function App() {
 
         {/* Use Routes instead of Switch */}
         <Routes>
-          <Route exact path="/about" element={<About />} />
+          <Route exact path="/about" element={<About mode={mode} />} />
           <Route exact path="/" element={<TextForm heading="Enter the text to analyze" mode={mode} showAlert={showAlert}/>} />
         </Routes>
       </div>
